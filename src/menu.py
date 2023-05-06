@@ -1,5 +1,6 @@
 import src.config as config
 import src.logic as log
+import src.change_settings as cs
 
 
 class Menu:
@@ -9,14 +10,14 @@ class Menu:
     def LaunchMenu(self):
         while True:
             self.PrintMenu()
-            tmp = int(input())
-            if tmp == 0:
+            input_number = int(input())
+            if input_number == 0:
                 break
-            elif tmp == 1:
+            elif input_number == 1:
                 self.main.SearchPath()
-            elif tmp == 2:
+            elif input_number == 2:
                 self.ChangeLanguage()
-            elif tmp == 3:
+            elif input_number == 3:
                 self.ChangeTarget()
 
     @staticmethod
@@ -46,14 +47,14 @@ class Menu:
         for i in range(len(heading)):
             print(f'{i + 1}) {heading[i]}')
         target_id = int(input())
-        config.ChangeTarget(target_id - 1)
+        cs.ChangeTarget(target_id - 1)
 
     @staticmethod
     def ChangeLanguage():
         print('1) English')
         print('2) Русский')
-        tmp = int(input())
-        if tmp == 1:
-            config.ChangeLanguage('en')
+        input_number = int(input())
+        if input_number == 1:
+            cs.ChangeLanguage('en')
         else:
-            config.ChangeLanguage('ru')
+            cs.ChangeLanguage('ru')

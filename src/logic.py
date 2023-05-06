@@ -42,14 +42,14 @@ class Logic:
         if config.TargetLink in all_links:
             self.result_path[config.TargetLink] = path + [wiki_title]
             return True
-        for i in (all_links & config.TargetHints):
-            if (i in self.result_path) and (len(self.result_path[i]) <= len(path)):
+        for link in (all_links & config.TargetHints):
+            if (link in self.result_path) and (len(self.result_path[link]) <= len(path)):
                 continue
-            self.result_path[i] = path + [wiki_title]
-            if self.BFSlinks(i):
+            self.result_path[link] = path + [wiki_title]
+            if self.BFSlinks(link):
                 return True
-        for i in all_links:
-            if (i in self.result_path) and (len(self.result_path[i]) <= len(path)):
+        for link in all_links:
+            if (link in self.result_path) and (len(self.result_path[link]) <= len(path)):
                 continue
-            self.result_path[i] = path + [wiki_title]
-            self.wrong_links_queue.put(i)
+            self.result_path[link] = path + [wiki_title]
+            self.wrong_links_queue.put(link)

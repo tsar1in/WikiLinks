@@ -77,22 +77,3 @@ HintsRU = {
         'https://ru.wikipedia.org/wiki/Интерпретируемый_язык_программирования'
     }
 }
-
-
-def ChangeLanguage(language):
-    global LANGUAGE, TargetNumber, TargetTitle, TargetLink, TargetHints, TitleEN, LinksEN, HintsEN
-    LANGUAGE = language
-    if LANGUAGE == 'en':
-        TargetTitle = TitleEN[TargetNumber]
-        TargetLink = LinksEN[TargetTitle]
-        TargetHints = HintsEN[TargetTitle]
-    elif LANGUAGE == 'ru':
-        TargetTitle = TitleRU[TargetNumber]
-        TargetLink = LinksRU[TargetTitle]
-        TargetHints = HintsRU[TargetTitle]
-
-
-def ChangeTarget(target_id):
-    global LANGUAGE, TargetNumber, TargetTitle, TargetLink, TargetHints, TitleEN, LinksEN, HintsEN
-    TargetNumber = target_id
-    ChangeLanguage(LANGUAGE)

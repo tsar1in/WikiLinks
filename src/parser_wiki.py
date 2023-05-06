@@ -8,14 +8,14 @@ def FindLinksFromWiki(link):
     soup = BeautifulSoup(requests.get(url=link).content, 'html.parser')
     title = soup.find(id="firstHeading").text
     all_links = set()
-    for i in soup.find(id="bodyContent").find_all("a"):
-        if not i.has_attr('href'):
+    for url in soup.find(id="bodyContent").find_all("a"):
+        if not url.has_attr('href'):
             continue
-        elif i['href'].find('/wiki/') == -1:
+        elif url['href'].find('/wiki/') == -1:
             continue
-        elif i['href'].find('(') != -1:
+        elif url['href'].find('(') != -1:
             continue
-        elif i['href'].find(':') != -1:
+        elif url['href'].find(':') != -1:
             continue
-        all_links = all_links.union({main_link + i['href']})
+        all_links = all_links.union({main_link + url['href']})
     return title, all_links
